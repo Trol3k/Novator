@@ -1,0 +1,92 @@
+@Novator_HostAddress = https://localhost:7195
+
+POST {{Novator_HostAddress}}/api/ship/passenger
+Content-Type: application/json
+
+{
+  "imo": "9706906",
+  "name": "MSC Gülsün",
+  "type": "Container Ship",
+  "length": 400.0,
+  "beam": 61.5
+}
+
+###
+
+POST {{Novator_HostAddress}}/api/ship/tanker
+Content-Type: application/json
+
+{
+  "imo": "5375008",
+  "name": "Titan Tanker",
+  "length": 280.0,
+  "beam": 50.0,
+  "tanks": [
+    { "capacity": 50000 },
+    { "capacity": 30000 }
+  ]
+}
+
+###
+
+GET {{Novator_HostAddress}}/api/ship
+
+###
+
+GET {{Novator_HostAddress}}/api/ship/5375008
+
+###
+
+GET {{Novator_HostAddress}}/api/ship/9706906
+
+###
+
+DELETE {{Novator_HostAddress}}/api/ship/9706906
+
+###
+
+POST {{Novator_HostAddress}}/api/ship/9706906/passengers
+Content-Type: application/json
+
+{
+    "name": "Jan Kowalski",
+    "age": 35
+}
+
+###
+
+POST {{Novator_HostAddress}}/api/ship/9706906/passengers
+Content-Type: application/json
+
+{
+    "name": "Anna Nowak",
+    "age": 28
+}
+
+###
+
+GET {{Novator_HostAddress}}/api/ship/9706906
+
+###
+DELETE {{Novator_HostAddress}}/api/ship/9706906/passengers/1
+
+###
+
+GET {{Novator_HostAddress}}/api/ship/9706906
+
+###
+@IMO=string
+@tankId=0
+PUT {{Novator_HostAddress}}/api/ship/5375008/tanks/1/empty
+
+###
+
+PUT {{Novator_HostAddress}}/api/ship/5375008/tanks/1/refuel
+Content-Type: application/json
+
+{
+  "fuelType": "Diesel",
+  "volume": 15000
+}
+
+###
